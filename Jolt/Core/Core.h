@@ -87,6 +87,8 @@
     #endif
 #elif defined(__EMSCRIPTEN__)
 	#define JPH_PLATFORM_WASM
+#elif defined(__PROSPERO__)
+	#define JPH_PLATFORM_PROSPERO
 #endif
 
 // Platform helper macros
@@ -324,6 +326,8 @@
 		#define JPH_BREAKPOINT	__builtin_trap()
 	#endif
 #elif defined(JPH_PLATFORM_WASM)
+	#define JPH_BREAKPOINT		do { } while (false) // Not supported
+#elif defined(JPH_PLATFORM_PROSPERO)
 	#define JPH_BREAKPOINT		do { } while (false) // Not supported
 #else
 	#error Unknown platform
